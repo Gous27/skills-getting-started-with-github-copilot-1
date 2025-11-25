@@ -49,6 +49,56 @@ def root():
 
 @app.get("/activities")
 def get_activities():
+    # Ensure additional activities are present in the in-memory store
+    additional_activities = {
+        # Sports (2)
+        "Basketball Team": {
+            "description": "Compete in inter-school basketball matches and practice team skills",
+            "schedule": "Mondays, Wednesdays, Fridays, 4:00 PM - 6:00 PM",
+            "max_participants": 15,
+            "participants": ["alex@mergington.edu", "nina@mergington.edu"]
+        },
+        "Soccer Team": {
+            "description": "Outdoor soccer practice and weekend matches",
+            "schedule": "Tuesdays and Thursdays, 5:00 PM - 7:00 PM",
+            "max_participants": 20,
+            "participants": ["liam@mergington.edu", "sara@mergington.edu"]
+        },
+
+        # Artistic (2)
+        "Art Club": {
+            "description": "Explore drawing, painting, and mixed media projects",
+            "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+            "max_participants": 15,
+            "participants": ["emma@mergington.edu"]
+        },
+        "Drama Club": {
+            "description": "Rehearse and perform plays, work on acting and stagecraft",
+            "schedule": "Tuesdays and Thursdays, 4:00 PM - 6:00 PM",
+            "max_participants": 25,
+            "participants": ["ethan@mergington.edu", "zoe@mergington.edu"]
+        },
+
+        # Intellectual (2)
+        "Science Club": {
+            "description": "Hands-on experiments and science fair project mentoring",
+            "schedule": "Thursdays, 3:30 PM - 4:30 PM",
+            "max_participants": 18,
+            "participants": ["mia@mergington.edu"]
+        },
+        "Debate Team": {
+            "description": "Practice public speaking and compete in debate tournaments",
+            "schedule": "Fridays, 2:00 PM - 3:30 PM",
+            "max_participants": 20,
+            "participants": ["noah@mergington.edu", "olivia@mergington.edu"]
+        }
+    }
+
+    # Merge new activities into the global activities dict if they aren't already present
+    for name, info in additional_activities.items():
+        if name not in activities:
+            activities[name] = info
+
     return activities
 
 
@@ -62,6 +112,11 @@ def signup_for_activity(activity_name: str, email: str):
     # Get the specific activity
     activity = activities[activity_name]
 
+    # Validate student is not already signed up
+    if email in activity["participants"]:
+        raise HTTPException(status_code=400, detail="Student already signed up for this activity")
+
     # Add student
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
+
