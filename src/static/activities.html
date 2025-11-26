@@ -143,100 +143,26 @@ footer {
   color: #666;
 }
 
-.participants {
-  margin-top: 12px;
-}
+section.activity-card {
+  h4: Morning Yoga
+  p: Gentle 45-minute session suitable for all levels.
 
-.participants h5 {
-  margin: 0 0 8px 0;
-  font-size: 13px;
-  color: #344156;
-  letter-spacing: 0.2px;
-}
-
-.participant-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.participant-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  transition: background-color 0.12s ease, transform 0.12s ease;
-  cursor: default;
-}
-
-.participant-item:hover {
-  background-color: rgba(26, 35, 126, 0.04);
-  transform: translateY(-1px);
-}
-
-.avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #6a8cff 0%, #8ad0ff 100%);
-  color: white;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
-  flex: 0 0 36px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
-}
-
-.participant-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.participant-name {
-  font-size: 14px;
-  color: #1a237e;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.participant-sub {
-  font-size: 12px;
-  color: #6b7280;
-  line-height: 1;
-}
-
-/* compact multiple avatars row (optional) */
-.participant-compact {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.participant-compact .avatar {
-  width: 28px;
-  height: 28px;
-  font-size: 12px;
-  box-shadow: none;
-}
-
-/* small screens: reduce spacing */
-@media (max-width: 480px) {
-  .participant-item {
-    gap: 8px;
-    padding: 6px;
-  }
-  .avatar {
-    width: 32px;
-    height: 32px;
-    font-size: 13px;
-  }
-  .participant-name { font-size: 13px; }
-  .participant-sub { font-size: 11px; }
+  participants section:
+  h5: Participants
+  ul.participant-list:
+    li.participant-item:
+      div.avatar: AL
+      div.participant-meta:
+        span.participant-name: Alex Lee
+        span.participant-sub: Joined · 2 days ago
+    li.participant-item:
+      div.avatar: MJ
+      div.participant-meta:
+        span.participant-name: Maya Johnson
+        span.participant-sub: Joined · 1 week ago
+    li.participant-item:
+      div.avatar: SR
+      div.participant-meta:
+        span.participant-name: Sam Rivera
+        span.participant-sub: Joined · today
 }
